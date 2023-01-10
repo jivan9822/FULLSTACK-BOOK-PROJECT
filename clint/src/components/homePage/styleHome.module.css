@@ -1,0 +1,37 @@
+body {
+  background-color: #57534e;
+  font-family: 'Sono';
+}
+
+.header {
+  background-color: #881337;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.heading {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+}
+
+.navItems {
+  display: flex;
+  gap: 30px;
+}
+
+.link {
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.linkH1 {
+  font-family: sans-serif;
+  color: white;
+  transition: 0.5s;
+}
+
+.linkH1:hover {
+  color: rgb(223, 159, 159);
+}

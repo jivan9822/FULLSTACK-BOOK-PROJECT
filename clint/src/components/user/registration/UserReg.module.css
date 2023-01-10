@@ -1,0 +1,57 @@
+.mainForm {
+  margin: 20px 500px;
+  box-sizing: border-box;
+  background-color: #fafaf9;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.option {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+}
+.inputOnly {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color: #44403c;
+  color: white;
+  font-family: 'Sono', sans-serif;
+  font-size: 16px;
+  border: none;
+}
+
+.select {
+  background-color: blue;
+  color: white;
+  height: 35px;
+}
+
+.button {
+  background-color: #881337; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: black; /* Green */
+  color: white;
+}
+
+.para {
+  color: red;
+}
