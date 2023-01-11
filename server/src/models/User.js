@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 //! ALL VALIDATION IS PENDING
 const UserSchema = mongoose.Schema(
@@ -52,6 +53,13 @@ const UserSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
+
+UserSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next();
+  this.password = await bcrypt.hash(this.password, 12);
+  this.confirmPassword = undefined;
+  next();
+});
 
 const User = mongoose.model('User', UserSchema);
 module.exports = User;

@@ -22,6 +22,7 @@ mongoose
   });
 
 app.use('/user', userRoute);
+
 app.all('*', (req, res, next) => {
   return next(new AppError(`The ${req.originalUrl} not found in server!`, 400));
 });

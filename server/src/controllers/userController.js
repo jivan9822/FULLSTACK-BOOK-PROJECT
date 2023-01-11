@@ -10,3 +10,7 @@ exports.userRegistration = CatchAsync(async (req, res, next) => {
     data,
   });
 });
+
+exports.userLogin = CatchAsync(async (req, res, next) => {
+  res.send('Login!');
+});

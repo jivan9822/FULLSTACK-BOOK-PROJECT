@@ -1,5 +1,6 @@
 .mainForm {
-  margin: 20px 500px;
+  max-width: 1000px;
+  margin: 20px auto;
   box-sizing: border-box;
   background-color: #fafaf9;
   padding: 50px;

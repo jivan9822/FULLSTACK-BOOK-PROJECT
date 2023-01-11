@@ -27,7 +27,6 @@ const UserRegistration = () => {
   const onClickHandler = async (e) => {
     e.preventDefault();
     const validate = userValidate(input);
-    console.log(Object.keys(validate));
     if (!Object.keys(validate).length) {
       await axios
         .post('/user', { data: input })

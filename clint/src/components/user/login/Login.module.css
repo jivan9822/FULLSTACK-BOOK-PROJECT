@@ -1,0 +1,51 @@
+.form {
+  background-color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 50px auto;
+  gap: 20px;
+}
+.input {
+  font-family: 'Sono', sans-serif;
+  color: white;
+  font-size: 20px;
+  background-color: rgb(43, 43, 43);
+  padding: 10px 20px;
+}
+.hide {
+  display: none;
+}
+.btn {
+  padding: 10px 20px;
+  background-color: rgb(64, 64, 242);
+  color: white;
+  border: none;
+  font-family: 'Sono';
+  font-size: 16px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.btn:hover {
+  background-color: black;
+}
+.inputPara {
+  color: red;
+}
+
+.errorDisplay {
+  background-color: red;
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.link {
+  color: blue;
+  transition: 0.5s;
+}
+.link:hover {
+  color: purple;
+}
