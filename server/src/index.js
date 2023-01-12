@@ -1,5 +1,6 @@
 require('dotenv').config({ path: 'config.env' });
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const cors = require('cors');
@@ -10,6 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(multer().any());
 app.use(cors());
+app.use(cookieParser());
 
 mongoose.set('strictQuery', true);
 mongoose
