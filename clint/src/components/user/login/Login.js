@@ -27,11 +27,11 @@ const Login = (props) => {
         .post('/user/login', input)
         .then((res) => {
           props.isValidUser();
+          navigate('/');
         })
         .catch((err) => {
           setErrorMsg(err.response.data.message);
         });
-      navigate('/');
     } else {
       setError(validate);
     }
@@ -67,6 +67,15 @@ const Login = (props) => {
         <div>
           <Link className={login.link} to='/userRegistration'>
             <p>Click here to register</p>
+          </Link>
+          <Link className={login.link} to='/login'>
+            <p
+              onClick={() => {
+                setErrorMsg(null);
+              }}
+            >
+              Try again
+            </p>
           </Link>
         </div>
       </div>

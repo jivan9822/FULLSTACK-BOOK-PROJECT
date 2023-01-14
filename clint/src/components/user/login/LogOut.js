@@ -8,7 +8,7 @@ const LogOut = (props) => {
     .then((res) => {
       console.log(res);
       props.isValidUser();
-      navigate('/');
+      navigate('/login');
     })
     .catch((err) => {
       console.log(err);
