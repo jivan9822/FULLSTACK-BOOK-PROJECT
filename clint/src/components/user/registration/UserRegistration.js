@@ -1,9 +1,12 @@
 import reg from '../registration/UserReg.module.css';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { userValidate } from '../../validation/userValidate';
 
-const UserRegistration = () => {
+const UserRegistration = (props) => {
+  useEffect(() => {
+    props.isValidUser();
+  }, []);
   const [input, setInput] = useState({
     title: '',
     fname: '',
@@ -31,7 +34,6 @@ const UserRegistration = () => {
       await axios
         .post('/user', { data: input })
         .then((res) => {
-          console.log(res);
           alert('Registration Success!');
           setInput({
             title: '',
@@ -47,7 +49,6 @@ const UserRegistration = () => {
         })
         .catch((err) => {
           alert(err.response.data.message);
-          console.log(err);
         });
     } else {
       setError(validate);

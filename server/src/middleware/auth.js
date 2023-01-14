@@ -56,13 +56,8 @@ exports.protect = CatchAsync(async (req, res, next) => {
 });
 
 exports.isLoggedIn = CatchAsync(async (req, res, next) => {
-  console.log(req.body);
   if (req.cookies.jwt) {
     let token = req.cookies.jwt;
-
-    if (!token) {
-      return next(new AppError('You are not logged in! Please login...', 400));
-    }
 
     const decode = await promisify(jwt.verify)(
       token,
@@ -70,12 +65,9 @@ exports.isLoggedIn = CatchAsync(async (req, res, next) => {
     );
     const user = await User.findById(decode.id);
     if (!user) {
-      return next(
-        new AppError(
-          'The user belonging to this token does no longer exist.',
-          401
-        )
-      );
+      return res.status(200).json({
+        status: false,
+      });
     }
 
     return res.status(200).json({
@@ -86,5 +78,7 @@ exports.isLoggedIn = CatchAsync(async (req, res, next) => {
       },
     });
   }
-  next(new AppError('No user found!', 400));
+  return res.status(200).json({
+    status: false,
+  });
 });

@@ -28,6 +28,14 @@ exports.userLogin = CatchAsync(async (req, res, next) => {
   });
 });
 
+exports.userLogOut = CatchAsync(async (req, res, next) => {
+  res.cookie('jwt', null);
+  res.status(200).json({
+    status: true,
+    message: 'Logout success!',
+  });
+});
+
 exports.isValid = CatchAsync(async (req, res, next) => {
   res.status(200).json({
     status: true,

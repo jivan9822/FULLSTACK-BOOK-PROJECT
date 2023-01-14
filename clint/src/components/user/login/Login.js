@@ -1,10 +1,13 @@
 import axios from 'axios';
 import login from './Login.module.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { loginValidate } from '../../validation/loginValidation';
 
-const Login = () => {
+const Login = (props) => {
+  useEffect(() => {
+    props.isValidUser();
+  }, []);
   const navigate = useNavigate();
   const [input, setInput] = useState({
     email: '',
@@ -23,7 +26,7 @@ const Login = () => {
       await axios
         .post('/user/login', input)
         .then((res) => {
-          console.log(res);
+          props.isValidUser();
         })
         .catch((err) => {
           setErrorMsg(err.response.data.message);
