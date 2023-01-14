@@ -6,6 +6,7 @@ import Login from './components/user/login/Login';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import LogOut from './components/user/login/LogOut';
+import './App.css';
 
 function App() {
   const [loginStatus, setLoginStatus] = useState(false);
