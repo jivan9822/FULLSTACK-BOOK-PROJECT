@@ -63,12 +63,12 @@ const Login = (props) => {
         </button>
       </form>
       <div className={errorMsg ? login.form : login.hide}>
-        <h3>{errorMsg}</h3>
+        <h3 className={login.msgErr}>{errorMsg}</h3>
         <div>
-          <Link className={login.link} to='/userRegistration'>
+          <Link className={login.errorText} to='/userRegistration'>
             <p>Click here to register</p>
           </Link>
-          <Link className={login.link} to='/login'>
+          <Link className={login.errorText} to='/login'>
             <p
               onClick={() => {
                 setErrorMsg(null);
