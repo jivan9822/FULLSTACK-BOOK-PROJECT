@@ -1,23 +1,50 @@
 import { useEffect, useState } from 'react';
 import procss from './userprofile.module.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { editValidate } from '../validation/loginValidation';
 
 const UserProfile = (props) => {
-  useEffect(() => {
-    props.isValidUser();
-  }, []);
+  const navigate = useNavigate();
   const { fname, lname, phone, email } = props.userData.user;
   const [edit, setEdit] = useState(true);
+  const [errMsg, setErrMsg] = useState({});
   const [userDetail, setUserDetails] = useState({
     fname,
     lname,
     phone,
     email,
   });
+
+  useEffect(() => {
+    props.isValidUser();
+  }, []);
+
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setUserDetails((old) => {
       return { ...old, [name]: value };
     });
+  };
+
+  const onClickHandler = (e) => {
+    e.preventDefault();
+    const validate = editValidate(userDetail);
+    console.log(validate);
+    if (!Object.keys(validate).length) {
+      axios
+        .patch('/user/profile', userDetail)
+        .then((res) => {
+          console.log(res);
+          alert('Updation Success!');
+          navigate('/');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setErrMsg(validate);
+    }
   };
 
   return (
@@ -44,6 +71,7 @@ const UserProfile = (props) => {
             name='fname'
             className={procss.input}
           />
+          <p>{errMsg.fname}</p>
           <input
             type='text'
             onChange={onChangeHandler}
@@ -52,6 +80,7 @@ const UserProfile = (props) => {
             name='lname'
             className={procss.input}
           />
+          <p>{errMsg.lname}</p>
           <input
             type='text'
             onChange={onChangeHandler}
@@ -60,6 +89,7 @@ const UserProfile = (props) => {
             name='phone'
             className={procss.input}
           />
+          <p>{errMsg.phone}</p>
           <input
             type='text'
             onChange={onChangeHandler}
@@ -68,8 +98,11 @@ const UserProfile = (props) => {
             name='email'
             className={procss.input}
           />
+          <p>{errMsg.email}</p>
           <div className={procss.btnManage}>
-            <button className={procss.btn}>Submit</button>
+            <button className={procss.btn} onClick={onClickHandler}>
+              Submit
+            </button>
             <button className={procss.btn} onClick={() => setEdit(!edit)}>
               Cancel
             </button>
