@@ -1,0 +1,50 @@
+.container {
+  background-color: #4c1d95;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto;
+  padding: 50px;
+  border-radius: 20px;
+  font-family: cursive;
+  color: white;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: blue;
+  color: white;
+  border: none;
+  font-family: 'Sono';
+  font-size: 16px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: 0.5s;
+  border-radius: 20px;
+}
+.btn:hover {
+  background-color: black;
+}
+.input {
+  font-family: 'Sono', sans-serif;
+  color: white;
+  font-size: 20px;
+  background-color: rgb(43, 43, 43);
+  padding: 10px 20px;
+}
+.form {
+  background-color: white;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 50px auto;
+  gap: 20px;
+}
+.hide {
+  display: none;
+}
+.btnManage {
+  display: flex;
+  justify-content: space-between;
+}
