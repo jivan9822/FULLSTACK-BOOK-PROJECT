@@ -8,6 +8,9 @@ router.post('/login', auth.authenticate, user.userLogin);
 router.get('/logout', user.userLogOut);
 router.get('/isValid', auth.isLoggedIn);
 
-router.post('/profile', auth.protect, user.userProfile);
+router
+  .route('/profile')
+  .post(auth.protect, user.userProfile)
+  .patch(auth.protect, user.updateProfile);
 
 module.exports = router;
