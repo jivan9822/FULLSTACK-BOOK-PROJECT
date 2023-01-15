@@ -15,8 +15,6 @@ function App() {
     axios
       .get('/user/isValid')
       .then((res) => {
-        console.log(res);
-        console.log(res.data.status);
         setLoginStatus(res.data.status);
         setUserData({ user: res.data.data.user });
       })

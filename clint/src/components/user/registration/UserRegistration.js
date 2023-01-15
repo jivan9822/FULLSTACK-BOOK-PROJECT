@@ -4,9 +4,6 @@ import { useState, useEffect } from 'react';
 import { userValidate } from '../../validation/userValidate';
 
 const UserRegistration = (props) => {
-  useEffect(() => {
-    props.isValidUser();
-  }, []);
   const [input, setInput] = useState({
     title: '',
     fname: '',

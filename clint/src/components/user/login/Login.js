@@ -5,9 +5,6 @@ import { useState, useEffect } from 'react';
 import { loginValidate } from '../../validation/loginValidation';
 
 const Login = (props) => {
-  useEffect(() => {
-    props.isValidUser();
-  }, []);
   const navigate = useNavigate();
   const [input, setInput] = useState({
     email: '',

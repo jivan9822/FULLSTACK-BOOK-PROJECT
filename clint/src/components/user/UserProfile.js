@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 
 const UserProfile = (props) => {
-  console.log(props.userData);
   useEffect(() => {
     props.isValidUser();
   }, []);
