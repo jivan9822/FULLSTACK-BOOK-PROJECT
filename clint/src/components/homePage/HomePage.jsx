@@ -1,6 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 import home from './styleHome.module.css';
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Admin from '../admin/AdminRoute';
 
 const HomePage = (props) => {

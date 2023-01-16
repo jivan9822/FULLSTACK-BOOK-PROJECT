@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import LogOut from './components/user/login/LogOut';
 import './App.css';
 import GetAllUsers from './components/user/GetAllUsers';
+import AddBook from './components/book/AddBook';
 
 function App() {
   const [loginStatus, setLoginStatus] = useState(false);
@@ -48,6 +49,7 @@ function App() {
         <Route path='login' element={<Login isValidUser={isValidUser} />} />
         <Route path='logout' element={<LogOut isValidUser={isValidUser} />} />
         <Route path='users' element={<GetAllUsers />} />
+        <Route path='addbook' element={<AddBook />} />
         <Route
           path='userProfile'
           element={
