@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import LogOut from './components/user/login/LogOut';
 import './App.css';
+import GetAllUsers from './components/user/GetAllUsers';
 
 function App() {
   const [loginStatus, setLoginStatus] = useState(false);
@@ -46,6 +47,7 @@ function App() {
         />
         <Route path='login' element={<Login isValidUser={isValidUser} />} />
         <Route path='logout' element={<LogOut isValidUser={isValidUser} />} />
+        <Route path='users' element={<GetAllUsers />} />
         <Route
           path='userProfile'
           element={
