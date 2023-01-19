@@ -7,8 +7,6 @@ const AppError = require('../errors/AppError');
 const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
-  console.log(req.body);
-  console.log('file', file);
   if (file.mimetype.startsWith('image')) {
     cb(null, true);
   } else {
@@ -92,23 +90,20 @@ exports.userProfile = CatchAsync(async (req, res, next) => {
 });
 
 exports.updateProfile = CatchAsync(async (req, res, next) => {
-  // console.log(req.files);
-  console.log(req.body);
-  // const user = await User.findByIdAndUpdate(
-  //   req.user._id,
-  //   {
-  //     $set: req.body,
-  //   },
-  //   { new: true }
-  // );
-  // res.status(200).json({
-  //   status: true,
-  //   message: 'Update Success!',
-  //   data: {
-  //     user,
-  //   },
-  // });
-  res.send('Done!');
+  const user = await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      $set: req.body,
+    },
+    { new: true }
+  );
+  res.status(200).json({
+    status: true,
+    message: 'Update Success!',
+    data: {
+      user,
+    },
+  });
 });
 
 exports.getAllUsers = CatchAsync(async (req, res, next) => {
