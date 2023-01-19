@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import procss from './userprofile.module.css';
+import profile from './userprofile.module.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { editValidate } from '../validation/loginValidation';
@@ -30,14 +30,13 @@ const UserProfile = (props) => {
   const onClickHandler = (e) => {
     e.preventDefault();
     const validate = editValidate(userDetail);
-    console.log(validate);
     if (!Object.keys(validate).length) {
       axios
         .patch('/user/profile', userDetail)
         .then((res) => {
-          console.log(res);
-          alert('Updation Success!');
+          alert('Update Success!');
           navigate('/');
+          window.location.reload();
         })
         .catch((err) => {
           alert(err.response.data.message);
@@ -50,26 +49,26 @@ const UserProfile = (props) => {
   return (
     <>
       {edit ? (
-        <div className={procss.container}>
+        <div className={profile.container}>
           <h2>FirstName: {fname}</h2>
           <h2>LastName: {lname}</h2>
           <h2>MobileNo: {phone}</h2>
           <h2>Email: {email}</h2>
           <div>
-            <button className={procss.btn} onClick={() => setEdit(!edit)}>
+            <button className={profile.btn} onClick={() => setEdit(!edit)}>
               Edit
             </button>
           </div>
         </div>
       ) : (
-        <form className={procss.form}>
+        <form className={profile.form}>
           <input
             type='text'
             onChange={onChangeHandler}
             placeholder='FirstName'
             value={userDetail.fname}
             name='fname'
-            className={procss.input}
+            className={profile.input}
           />
           <p>{errMsg.fname}</p>
           <input
@@ -78,7 +77,7 @@ const UserProfile = (props) => {
             placeholder='LastName'
             value={userDetail.lname}
             name='lname'
-            className={procss.input}
+            className={profile.input}
           />
           <p>{errMsg.lname}</p>
           <input
@@ -87,7 +86,7 @@ const UserProfile = (props) => {
             placeholder='Mobile'
             value={userDetail.phone}
             name='phone'
-            className={procss.input}
+            className={profile.input}
           />
           <p>{errMsg.phone}</p>
           <input
@@ -96,14 +95,14 @@ const UserProfile = (props) => {
             placeholder='Email'
             value={userDetail.email}
             name='email'
-            className={procss.input}
+            className={profile.input}
           />
           <p>{errMsg.email}</p>
-          <div className={procss.btnManage}>
-            <button className={procss.btn} onClick={onClickHandler}>
+          <div className={profile.btnManage}>
+            <button className={profile.btn} onClick={onClickHandler}>
               Submit
             </button>
-            <button className={procss.btn} onClick={() => setEdit(!edit)}>
+            <button className={profile.btn} onClick={() => setEdit(!edit)}>
               Cancel
             </button>
           </div>
