@@ -12,6 +12,11 @@ router.get('/allusers', auth.protect, user.getAllUsers);
 router
   .route('/profile')
   .post(auth.protect, user.userProfile)
-  .patch(auth.protect, user.updateProfile);
+  .patch(
+    auth.protect,
+    user.uploadUserPhoto,
+    user.resizeUserPhoto,
+    user.updateProfile
+  );
 
 module.exports = router;

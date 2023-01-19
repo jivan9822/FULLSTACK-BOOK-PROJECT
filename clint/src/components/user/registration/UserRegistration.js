@@ -112,6 +112,15 @@ const UserRegistration = (props) => {
       </div>
       <div>
         <input
+          type='file'
+          className={reg.inputOnly}
+          name='photo'
+          onChange={onChangeHandler}
+        />
+        <span>Choose Your Photo</span>
+      </div>
+      <div>
+        <input
           className={reg.inputOnly}
           name='address'
           value={input.address}

@@ -28,6 +28,10 @@ const UserSchema = mongoose.Schema(
       required: [true, 'Please provide phone number!'],
       unique: true,
     },
+    photo: {
+      type: String,
+      default: 'default.jpg',
+    },
     //   email: {string, mandatory, valid email, unique},
     email: {
       type: String,
