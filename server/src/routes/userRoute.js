@@ -1,6 +1,10 @@
 const router = require('express').Router();
 const user = require('../controllers/userController');
 const auth = require('../middleware/auth');
+const {
+  uploadUserPhoto,
+  resizeUserPhoto,
+} = require('../middleware/fileUploads');
 
 router.route('/').post(user.userRegistration);
 
@@ -12,11 +16,6 @@ router.get('/allusers', auth.protect, user.getAllUsers);
 router
   .route('/profile')
   .post(auth.protect, user.userProfile)
-  .patch(
-    auth.protect,
-    user.uploadUserPhoto,
-    user.resizeUserPhoto,
-    user.updateProfile
-  );
+  .patch(auth.protect, uploadUserPhoto, resizeUserPhoto, user.updateProfile);
 
 module.exports = router;

@@ -7,6 +7,7 @@ import { editValidate } from '../validation/loginValidation';
 const UserProfile = (props) => {
   const navigate = useNavigate();
   const { fname, lname, phone, email } = props.userData.user;
+  const [image, setImage] = useState(null);
   const [edit, setEdit] = useState(true);
   const [errMsg, setErrMsg] = useState({});
   const [userDetail, setUserDetails] = useState({
@@ -22,17 +23,26 @@ const UserProfile = (props) => {
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
+    if (e.target.files && e.target.files.length) {
+      setImage(e.target.files[0]);
+    }
     setUserDetails((old) => {
       return { ...old, [name]: value };
     });
   };
 
   const onClickHandler = (e) => {
+    const formData = new FormData();
+    formData.append('fname', fname);
+    formData.append('lname', lname);
+    formData.append('phone', phone);
+    formData.append('email', email);
+    formData.append('photo', image);
     e.preventDefault();
     const validate = editValidate(userDetail);
     if (!Object.keys(validate).length) {
       axios
-        .patch('/user/profile', userDetail)
+        .patch('/user/profile', formData)
         .then((res) => {
           alert('Update Success!');
           navigate('/');
@@ -80,6 +90,7 @@ const UserProfile = (props) => {
             className={profile.input}
           />
           <p>{errMsg.lname}</p>
+          <input type='file' name='photo' onChange={onChangeHandler} />
           <input
             type='text'
             onChange={onChangeHandler}

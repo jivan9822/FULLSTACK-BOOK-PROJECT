@@ -14,7 +14,7 @@ app.use(express.json());
 // app.use(multer().any());
 app.use(cors());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('src/images'));
 
 mongoose.set('strictQuery', true);
 mongoose

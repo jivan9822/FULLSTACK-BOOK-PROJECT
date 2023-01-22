@@ -25,7 +25,6 @@ function App() {
         setLoginStatus(false);
       });
   };
-
   useEffect(() => {
     isValidUser();
   }, []);

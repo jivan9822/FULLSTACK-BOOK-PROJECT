@@ -43,3 +43,8 @@ body {
   flex-direction: row-reverse;
   gap: 20px;
 }
+.linkImage {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
