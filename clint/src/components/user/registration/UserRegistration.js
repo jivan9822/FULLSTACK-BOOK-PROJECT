@@ -2,8 +2,11 @@ import reg from '../registration/UserReg.module.css';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { userValidate } from '../../validation/userValidate';
+import ImageUpload from './ImageUpload';
+import { useNavigate } from 'react-router-dom';
 
 const UserRegistration = (props) => {
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     title: '',
     fname: '',
@@ -12,9 +15,18 @@ const UserRegistration = (props) => {
     email: '',
     address: '',
     password: '',
+    photo: '',
     confirmPassword: '',
   });
   const [error, setError] = useState({});
+  const onInput = (imageData) => {
+    setInput((old) => {
+      return {
+        ...old,
+        photo: imageData.image,
+      };
+    });
+  };
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setInput((old) => {
@@ -27,9 +39,19 @@ const UserRegistration = (props) => {
   const onClickHandler = async (e) => {
     e.preventDefault();
     const validate = userValidate(input);
+    const formData = new FormData();
+    formData.append('photo', input.photo);
+    formData.append('title', input.title);
+    formData.append('fname', input.fname);
+    formData.append('lname', input.lname);
+    formData.append('phone', input.phone);
+    formData.append('email', input.email);
+    formData.append('address', input.address);
+    formData.append('password', input.password);
+    formData.append('confirmPassword', input.confirmPassword);
     if (!Object.keys(validate).length) {
       await axios
-        .post('/user', { data: input })
+        .post('/user', formData)
         .then((res) => {
           alert('Registration Success!');
           setInput({
@@ -40,9 +62,11 @@ const UserRegistration = (props) => {
             email: '',
             address: '',
             password: '',
+            photo: '#',
             confirmPassword: '',
           });
           setError({});
+          navigate('/login');
         })
         .catch((err) => {
           alert(err.response.data.message);
@@ -53,7 +77,7 @@ const UserRegistration = (props) => {
   };
 
   return (
-    <form className={reg.mainForm}>
+    <div className={reg.mainForm}>
       <div className={reg.option}>
         <div>
           <select
@@ -89,6 +113,7 @@ const UserRegistration = (props) => {
           />
           <p className={reg.para}>{error.lname}</p>
         </div>
+        <ImageUpload id='image' onInput={onInput} />
       </div>
       <div>
         <input
@@ -109,15 +134,6 @@ const UserRegistration = (props) => {
           onChange={onChangeHandler}
         />
         <p className={reg.para}>{error.email}</p>
-      </div>
-      <div>
-        <input
-          type='file'
-          className={reg.inputOnly}
-          name='photo'
-          onChange={onChangeHandler}
-        />
-        <span>Choose Your Photo</span>
       </div>
       <div>
         <input
@@ -154,7 +170,7 @@ const UserRegistration = (props) => {
       <button className={reg.button} onClick={onClickHandler}>
         SUBMIT
       </button>
-    </form>
+    </div>
   );
 };
 

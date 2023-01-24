@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import admin from './Admin.module.css';
 const Admin = (props) => {
+  console.log(props.userData);
   let isAdmin = false;
   if (props.userData.user) {
     if (props.userData.user.roll === 'admin') {
@@ -40,9 +41,17 @@ const Admin = (props) => {
             <h1 className={admin.linkH1}>Log out</h1>
           </Link>
           <Link className={admin.link} to='/userProfile'>
-            <h1 className={admin.linkH1}>
-              Welcome-{props.userData.user.fname}
-            </h1>
+            <div className={admin.linkImage}>
+              <h1 className={admin.linkH1}>
+                Welcome-{props.userData.user.fname}
+              </h1>
+              <img
+                src={props.userData.user.photo}
+                width='50px'
+                height='50px'
+                style={{ borderRadius: '50%' }}
+              />
+            </div>
           </Link>
         </div>
       )}

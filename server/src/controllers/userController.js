@@ -3,8 +3,8 @@ const User = require('../models/User');
 const AppError = require('../errors/AppError');
 
 exports.userRegistration = CatchAsync(async (req, res, next) => {
-  req.body.data.roll = 'user';
-  const data = await User.create(req.body.data);
+  req.body.roll = 'user';
+  const data = await User.create(req.body);
   res.status(201).json({
     status: true,
     message: 'User registration success!',

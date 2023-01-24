@@ -6,7 +6,7 @@ const {
   resizeUserPhoto,
 } = require('../middleware/fileUploads');
 
-router.route('/').post(user.userRegistration);
+router.route('/').post(uploadUserPhoto, resizeUserPhoto, user.userRegistration);
 
 router.post('/login', auth.authenticate, user.userLogin);
 router.get('/logout', user.userLogOut);
