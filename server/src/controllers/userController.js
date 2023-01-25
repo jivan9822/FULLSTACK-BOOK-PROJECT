@@ -58,9 +58,6 @@ exports.userProfile = CatchAsync(async (req, res, next) => {
 });
 
 exports.updateProfile = CatchAsync(async (req, res, next) => {
-  req.body.photo = `http://localhost:4000/${req.file.filename}`;
-  // console.log(req.file);
-  // console.log(req);
   const user = await User.findByIdAndUpdate(
     req.user._id,
     {
@@ -75,7 +72,6 @@ exports.updateProfile = CatchAsync(async (req, res, next) => {
       user,
     },
   });
-  // res.send('Hello!');
 });
 
 exports.getAllUsers = CatchAsync(async (req, res, next) => {
