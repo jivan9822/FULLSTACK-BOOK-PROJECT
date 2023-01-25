@@ -12,6 +12,23 @@ exports.userRegistration = CatchAsync(async (req, res, next) => {
   });
 });
 
+exports.updateProfile = CatchAsync(async (req, res, next) => {
+  const user = await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      $set: req.body,
+    },
+    { new: true }
+  );
+  res.status(200).json({
+    status: true,
+    message: 'Update Success!',
+    data: {
+      user,
+    },
+  });
+});
+
 exports.userLogin = CatchAsync(async (req, res, next) => {
   res.cookie('jwt', req.token, {
     expires: new Date(
@@ -53,23 +70,6 @@ exports.userProfile = CatchAsync(async (req, res, next) => {
     message: 'success',
     data: {
       user: req.user,
-    },
-  });
-});
-
-exports.updateProfile = CatchAsync(async (req, res, next) => {
-  const user = await User.findByIdAndUpdate(
-    req.user._id,
-    {
-      $set: req.body,
-    },
-    { new: true }
-  );
-  res.status(200).json({
-    status: true,
-    message: 'Update Success!',
-    data: {
-      user,
     },
   });
 });

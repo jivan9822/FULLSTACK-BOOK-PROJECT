@@ -3,6 +3,7 @@ import profile from './userprofile.module.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { editValidate } from '../validation/loginValidation';
+import ImageUpload from './registration/ImageUpload';
 
 const UserProfile = (props) => {
   const navigate = useNavigate();
@@ -20,12 +21,11 @@ const UserProfile = (props) => {
   useEffect(() => {
     props.isValidUser();
   }, []);
-
+  const onInput = (imageData) => {
+    setImage(imageData.image);
+  };
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
-    if (e.target.files && e.target.files.length) {
-      setImage(e.target.files[0]);
-    }
     setUserDetails((old) => {
       return { ...old, [name]: value };
     });
@@ -71,7 +71,7 @@ const UserProfile = (props) => {
           </div>
         </div>
       ) : (
-        <form className={profile.form}>
+        <div className={profile.form}>
           <input
             type='text'
             onChange={onChangeHandler}
@@ -90,7 +90,7 @@ const UserProfile = (props) => {
             className={profile.input}
           />
           <p>{errMsg.lname}</p>
-          <input type='file' name='photo' onChange={onChangeHandler} />
+          <ImageUpload id='image' onInput={onInput} />
           <input
             type='text'
             onChange={onChangeHandler}
@@ -117,7 +117,7 @@ const UserProfile = (props) => {
               Cancel
             </button>
           </div>
-        </form>
+        </div>
       )}
     </>
   );
