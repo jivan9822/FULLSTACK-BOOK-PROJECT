@@ -2,6 +2,7 @@ import { Link, Outlet } from 'react-router-dom';
 import home from './styleHome.module.css';
 import { Fragment, useEffect, useState } from 'react';
 import Admin from '../admin/AdminRoute';
+import DisplayBooks from '../book/DisplayBook';
 
 const HomePage = (props) => {
   const loginStatus = props.loginStatus;
@@ -28,6 +29,9 @@ const HomePage = (props) => {
           </div>
         </div>
       </header>
+      <main>
+        <DisplayBooks />
+      </main>
       <Outlet />
     </Fragment>
   );
