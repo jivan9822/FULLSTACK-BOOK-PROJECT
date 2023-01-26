@@ -1,6 +1,6 @@
 .gridCont {
   background-color: white;
-  padding: 20px;
+  padding: 10px 20px;
   --auto-grid-min-size: 16rem;
 
   display: grid;
@@ -11,10 +11,31 @@
   grid-gap: 1rem;
 }
 li {
-  padding: 2rem 1rem;
+  /* padding: 0.5rem 1rem; */
   text-align: center;
+  padding-bottom: 1rem;
   font-size: 1.2rem;
   background: #eb4d4b;
   color: #ffffff;
+  list-style: none;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.link {
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  padding: 10px;
+  transition: 0.5s;
+}
+.link:hover {
+  background-color: white;
+  color: black;
+}
+.title {
+  letter-spacing: 2px;
+  padding: 0px 5px;
 }

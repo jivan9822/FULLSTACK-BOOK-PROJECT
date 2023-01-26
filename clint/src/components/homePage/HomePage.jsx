@@ -6,16 +6,24 @@ import DisplayBooks from '../book/DisplayBook';
 
 const HomePage = (props) => {
   const loginStatus = props.loginStatus;
+  const [isDisplay, setDisplay] = useState(false);
   return (
     <Fragment>
       <header className={home.header}>
         <Link className={home.heading} to='/'>
-          <h1 onClick={() => props.isValidUser()}>Book Management</h1>
+          <h1
+            onClick={() => {
+              props.isValidUser();
+              setDisplay(true);
+            }}
+          >
+            Book Management
+          </h1>
         </Link>
         <div className={home.navItems}>
           <div>
             {loginStatus ? (
-              <Admin userData={props.userData} />
+              <Admin userData={props.userData} setDisplay={setDisplay} />
             ) : (
               <div>
                 <Link className={home.link} to='/login'>
@@ -29,9 +37,7 @@ const HomePage = (props) => {
           </div>
         </div>
       </header>
-      <main>
-        <DisplayBooks />
-      </main>
+      <main>{loginStatus && isDisplay && <DisplayBooks />}</main>
       <Outlet />
     </Fragment>
   );
