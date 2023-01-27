@@ -17,6 +17,7 @@ const UserSchema = mongoose.Schema(
     fname: {
       type: String,
       required: [true, 'Please provide your first name!'],
+      match: [/^[a-zA-Z]$/g, 'First name have only alpha beats!'],
     },
     lname: {
       type: String,
