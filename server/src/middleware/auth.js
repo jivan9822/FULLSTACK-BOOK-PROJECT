@@ -61,9 +61,7 @@ exports.isLoggedIn = CatchAsync(async (req, res, next) => {
     );
     const user = await User.findById(decode.id);
     if (!user) {
-      return res.status(200).json({
-        status: false,
-      });
+      return next(new AppError('You are not loggedIn! Please Login!', 400));
     }
 
     return res.status(200).json({
@@ -74,7 +72,5 @@ exports.isLoggedIn = CatchAsync(async (req, res, next) => {
       },
     });
   }
-  return res.status(200).json({
-    status: false,
-  });
+  return next(new AppError('You are not loggedIn! Please Login!', 400));
 });
