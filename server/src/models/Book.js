@@ -16,9 +16,16 @@ const BookSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+      required: true,
+    },
     reviews: {
       type: Number,
       default: 0,
+    },
+    photo: {
+      type: String,
     },
     avgRating: {
       type: Number,
@@ -43,6 +50,11 @@ const BookSchema = mongoose.Schema(
     timestamp: true,
   }
 );
+
+BookSchema.pre(/^find/, function (next) {
+  this.find({ isDeleted: false });
+  next();
+});
 
 const Book = mongoose.model('Book', BookSchema);
 module.exports = Book;
