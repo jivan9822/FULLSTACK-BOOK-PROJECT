@@ -2,8 +2,10 @@ import axios from 'axios';
 import addBook from './AddBook.module.css';
 import ImageUpload from './../user/registration/ImageUpload';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AddBook = () => {
+  const navigate = useNavigate();
   const [image, setImage] = useState(null);
   const [bookDetails, setBookDetails] = useState({
     title: '',
@@ -35,6 +37,8 @@ const AddBook = () => {
       .post('/book', formData)
       .then((res) => {
         console.log(res);
+        navigate('/');
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);

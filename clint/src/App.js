@@ -13,6 +13,7 @@ import AddBook from './components/book/AddBook';
 function App() {
   const [loginStatus, setLoginStatus] = useState(false);
   const [userData, setUserData] = useState({});
+  const [books, setBooks] = useState([]);
   const isValidUser = () => {
     axios
       .get('/user/isValid')
@@ -28,14 +29,22 @@ function App() {
   };
   useEffect(() => {
     isValidUser();
+    axios
+      .get('/book')
+      .then((res) => {
+        setBooks([...res.data.data.books]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
-
   return (
     <Routes>
       <Route
         path='/'
         element={
           <HomePage
+            books={books}
             loginStatus={loginStatus}
             isValidUser={isValidUser}
             userData={userData}

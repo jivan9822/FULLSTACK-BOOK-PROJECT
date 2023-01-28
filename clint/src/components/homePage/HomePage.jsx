@@ -6,7 +6,7 @@ import DisplayBooks from '../book/DisplayBook';
 
 const HomePage = (props) => {
   const loginStatus = props.loginStatus;
-  const [isDisplay, setDisplay] = useState(false);
+  const [isDisplay, setDisplay] = useState(true);
   return (
     <Fragment>
       <header className={home.header}>
@@ -37,7 +37,9 @@ const HomePage = (props) => {
           </div>
         </div>
       </header>
-      <main>{loginStatus && isDisplay && <DisplayBooks />}</main>
+      <main>
+        {loginStatus && isDisplay && <DisplayBooks books={props.books} />}
+      </main>
       <Outlet />
     </Fragment>
   );

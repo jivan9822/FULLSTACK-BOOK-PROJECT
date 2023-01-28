@@ -1,46 +1,52 @@
 import { Link } from 'react-router-dom';
 import display from './DisplayBook.module.css';
-const Books = [
-  {
-    id: 1,
-    title: 'Harry Porter - 1',
-    author: 'J K Rolling',
-    review: [],
-    avgReview: 4.5,
-    photo:
-      'https://m.media-amazon.com/images/I/51PcUAhn15L._SX498_BO1,204,203,200_.jpg',
-    category: 'Story',
-  },
-  {
-    id: 2,
-    title: 'Harry Porter - 1',
-    author: 'J K Rolling',
-    review: [],
-    avgReview: 4.5,
-    photo:
-      'https://m.media-amazon.com/images/I/51PcUAhn15L._SX498_BO1,204,203,200_.jpg',
-    category: 'Story',
-  },
-];
+import { useState } from 'react';
+import DeleteHandler from './UpdateDel/Delete';
+import UpdateHandler from './UpdateDel/Update';
 
-const DisplayBooks = () => {
+const DisplayBooks = (props) => {
+  const onClickUpdateHandler = (e) => {
+    const book = props.books.filter((each) => each._id === e.target.value);
+    UpdateHandler(book[0]);
+  };
+  const onClickDelHandler = (e) => {
+    DeleteHandler(e.target.value);
+  };
   return (
     <div className={display.gridCont}>
-      {Books.map((book) => {
+      {props.books.map((book) => {
         return (
-          <li key={book.id}>
+          <li key={book._id}>
             <div>
               <h2 className={display.title}>{book.title}</h2>
             </div>
             <img src={book.photo} height='250px' />
             <div>
               <span style={{ fontFamily: 'cursive', color: 'black' }}>
-                {book.author}
+                {book.authorName}
               </span>
             </div>
-            <Link className={display.link} to='#'>
-              ReadBook
-            </Link>
+            <div className={display.linkdiv} to='#'>
+              <button
+                type='submit'
+                name='edit'
+                value={book._id}
+                className={display.updateBtn}
+                onClick={onClickUpdateHandler}
+              >
+                edit
+              </button>
+              <p className={display.link}> ReadBook</p>
+              <button
+                type='submit'
+                name='delete'
+                value={book._id}
+                className={display.delBtn}
+                onClick={onClickDelHandler}
+              >
+                delete
+              </button>
+            </div>
           </li>
         );
       })}
