@@ -53,3 +53,7 @@
   height: 50px;
   width: 50%;
 }
+.twoImg {
+  display: flex;
+  gap: 10px;
+}

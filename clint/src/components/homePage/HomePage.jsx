@@ -3,6 +3,7 @@ import home from './styleHome.module.css';
 import { Fragment, useEffect, useState } from 'react';
 import Admin from '../admin/AdminRoute';
 import DisplayBooks from '../book/DisplayBook';
+import UpdateHandler from '../book/UpdateDel/Update';
 
 const HomePage = (props) => {
   const loginStatus = props.loginStatus;
@@ -39,6 +40,7 @@ const HomePage = (props) => {
       </header>
       <main>
         {loginStatus && isDisplay && <DisplayBooks books={props.books} />}
+        {/* {!isDisplay && <UpdateHandler setDisplay={setDisplay} />} */}
       </main>
       <Outlet />
     </Fragment>

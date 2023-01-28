@@ -1,18 +1,23 @@
 import { Link } from 'react-router-dom';
 import display from './DisplayBook.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DeleteHandler from './UpdateDel/Delete';
 import UpdateHandler from './UpdateDel/Update';
 
 const DisplayBooks = (props) => {
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [bookData, setBookData] = useState();
   const onClickUpdateHandler = (e) => {
+    setIsUpdate(true);
     const book = props.books.filter((each) => each._id === e.target.value);
-    UpdateHandler(book[0]);
+    setBookData(book);
   };
   const onClickDelHandler = (e) => {
     DeleteHandler(e.target.value);
   };
-  return (
+  return isUpdate ? (
+    <UpdateHandler setIsUpdate={setIsUpdate} bookData={bookData} />
+  ) : (
     <div className={display.gridCont}>
       {props.books.map((book) => {
         return (
