@@ -2,3 +2,30 @@
   display: flex;
   gap: 30px;
 }
+.ratebtndiv {
+  display: flex;
+  gap: 10px;
+}
+.revBtn {
+  width: 50%;
+  box-shadow: 3px 1px 5px black;
+  height: 30px;
+  cursor: pointer;
+  border: none;
+  font-family: sans-serif;
+  font-size: 16px;
+  background-color: brown;
+}
+
+.revBtn:hover {
+  background-color: rgb(37, 10, 10);
+  color: white;
+}
+.revBtnread {
+  cursor: pointer;
+  border: none;
+  font-family: sans-serif;
+  color: blue;
+  font-size: 16px;
+  background-color: transparent;
+}

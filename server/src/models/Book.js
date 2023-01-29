@@ -24,22 +24,17 @@ const BookSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    photo: {
+      type: String,
+    },
     reviews: {
       type: Number,
       default: 0,
     },
-    photo: {
-      type: String,
-    },
     avgRating: {
       type: Number,
       default: 4.5,
-      min: 0,
-      max: 5,
-    },
-    ratings: {
-      type: Number,
-      default: 0,
+      set: (val) => Math.round(val * 100) / 100,
     },
     deletedAt: {
       type: Date,
@@ -51,9 +46,16 @@ const BookSchema = mongoose.Schema(
     },
   },
   {
-    timestamp: true,
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
 );
+BookSchema.virtual('userReviews', {
+  ref: 'Review',
+  foreignField: 'bookId',
+  localField: '_id',
+});
 
 BookSchema.pre(/^find/, function (next) {
   this.find({ isDeleted: false });

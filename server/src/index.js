@@ -7,6 +7,7 @@ const multer = require('multer');
 const cors = require('cors');
 const userRoute = require('../src/routes/userRoute');
 const bookRoute = require('../src/routes/bookRoute');
+const reviewRoute = require('../src/routes/reviewRoute');
 const { AppError } = require('./errors/AppError');
 const { globalErrorHandler } = require('./errors/globalError');
 const app = express();
@@ -28,6 +29,7 @@ mongoose
 
 app.use('/user', userRoute);
 app.use('/book', bookRoute);
+app.use('/review', reviewRoute);
 
 app.all('*', (req, res, next) => {
   return next(new AppError(`The ${req.originalUrl} not found in server!`, 400));

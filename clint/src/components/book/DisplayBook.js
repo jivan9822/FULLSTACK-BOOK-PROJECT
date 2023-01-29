@@ -51,10 +51,6 @@ const DisplayBooks = (props) => {
               <span className='fa fa-star checked'>{book.avgRating}</span>
             </div>
             <div>
-              <span className='heading'>No Of Rating </span>
-              <span className='fa fa-star checked'>{book.ratings}</span>
-            </div>
-            <div>
               <span className='heading'>Total Reviews </span>
               <span className='fa fa-star checked'>{book.reviews}</span>
             </div>
