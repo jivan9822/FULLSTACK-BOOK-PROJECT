@@ -12,6 +12,10 @@ const BookSchema = mongoose.Schema(
       required: true,
       ref: 'User',
     },
+    authorName: {
+      type: String,
+      required: true,
+    },
     category: {
       type: String,
       required: true,

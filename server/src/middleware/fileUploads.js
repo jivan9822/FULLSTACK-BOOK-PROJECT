@@ -30,11 +30,11 @@ exports.resizeUserPhoto = (req, res, next) => {
     req.body.photo = `http://localhost:4000/default.jpg`;
     return next();
   }
-  req.file.filename = `user-${
-    req.user ? req.user._id : req.file.originalname
+  req.file.filename = `user-${req.user ? req.user._id : req.file.originalname}${
+    url === 'BookCover' ? req.file.originalname : ''
   }.jpeg`;
   sharp(req.file.buffer)
-    .resize(500, 500)
+    // .resize(500, 500)
     .toFormat('jpeg')
     .jpeg({ quality: 90 })
     .toFile(`src/images/${url}/${req.file.filename}`);

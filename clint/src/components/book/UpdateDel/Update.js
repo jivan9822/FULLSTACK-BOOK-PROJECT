@@ -51,7 +51,7 @@ const UpdateHandler = (props) => {
     }
   };
   const onCancelHandler = (e) => {
-    props.setIsUpdate(false);
+    props.setHideDisplay(false);
   };
   const onInput = (imageData) => {
     setImage(imageData.image);

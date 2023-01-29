@@ -30,30 +30,32 @@ li {
   text-decoration: none;
   background-color: black;
 }
-.link {
+/* .link {
   text-align: center;
   cursor: pointer;
   text-decoration: none;
   color: white;
+  background-color: black;
   padding: 5px;
   transition: 0.5s;
-}
-.link:hover {
-  background-color: white;
-  color: black;
-}
+} */
 
 .title {
   letter-spacing: 2px;
   padding: 0px 5px;
 }
-.delBtn {
+.delBtn,
+.updateBtn,
+.link {
+  padding: 10px;
   cursor: pointer;
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
+  border: none;
+  transition: 0.5s;
 }
-.updateBtn {
-  cursor: pointer;
-  background-color: white;
-  color: black;
+.delBtn:hover,
+.updateBtn:hover,
+.link:hover {
+  color: rgb(255, 119, 0);
 }
