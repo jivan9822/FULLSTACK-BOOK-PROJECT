@@ -1,15 +1,13 @@
-import addBook from '../AddBook.module.css';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import addRev from '../../book/AddBook.module.css';
 import axios from 'axios';
+import { useState } from 'react';
 
-const RateBook = (props) => {
-  const navigate = useNavigate();
+const ReviewForm = (props) => {
   const [char, setChar] = useState(50);
   const [ratingData, setRatingData] = useState({
-    rating: '',
+    id: props.id,
+    rating: 0,
     review: '',
-    bookId: '',
   });
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -29,7 +27,6 @@ const RateBook = (props) => {
       document.getElementById('input1').style.color = 'white';
       document.getElementById('submit').style.display = '';
     }
-
     setRatingData((old) => {
       return {
         ...old,
@@ -38,41 +35,16 @@ const RateBook = (props) => {
     });
   };
   const onClickHandler = (e) => {
-    ratingData.bookId = props.book._id;
-    axios
-      .post('/review', ratingData)
-      .then((res) => {
-        console.log(res);
-        alert('Review added success!');
-        navigate('/');
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-        alert(
-          'You have already a rating for this book! Multiple review not allowed!!!'
-        );
-      });
-
-    setRatingData({
-      rating: '',
-      review: '',
-    });
-    e.preventDefault();
+    console.log(ratingData);
   };
-
-  const onCancelHandler = (e) => {
-    props.setRatePage(false);
-    e.preventDefault();
-  };
-
+  console.log(props.id);
   return (
-    <div className={addBook.bookContainer} style={{ maxWidth: '50%' }}>
+    <div className={addRev.bookContainer} style={{ maxWidth: '50%' }}>
       <h1>Rating</h1>
-      <label className={addBook.booklabel}>
+      <label className={addRev.booklabel}>
         Pleas rate this Book 1 to 5*:
         <input
-          className={addBook.bookinput}
+          className={addRev.bookinput}
           onChange={onChangeHandler}
           name='rating'
           id='input1'
@@ -81,11 +53,11 @@ const RateBook = (props) => {
           placeholder='Rating from 0-5'
         />
       </label>
-      <label className={addBook.booklabel}>
+      <label className={addRev.booklabel}>
         Write a review Max (<span>{char}</span>):
         <textarea
           onChange={onChangeHandler}
-          className={addBook.dis}
+          className={addRev.dis}
           type='text'
           name='review'
           value={ratingData.review}
@@ -101,7 +73,7 @@ const RateBook = (props) => {
         }}
       >
         <button
-          className={addBook.bookBtn}
+          className={addRev.bookBtn}
           onClick={onClickHandler}
           type='submit'
           value='Submit'
@@ -110,9 +82,9 @@ const RateBook = (props) => {
           Submit
         </button>
         <button
-          className={addBook.bookBtn}
+          className={addRev.bookBtn}
           type='submit'
-          onClick={onCancelHandler}
+          onClick={() => props.setUpdate(false)}
           value='Submit'
         >
           Cancel
@@ -122,4 +94,4 @@ const RateBook = (props) => {
   );
 };
 
-export default RateBook;
+export default ReviewForm;

@@ -60,7 +60,10 @@ const Admin = (props) => {
           </Link>
           <Link className={admin.link} to='/userProfile'>
             <div className={admin.linkImage}>
-              <h1 className={admin.linkH1}>
+              <h1
+                onClick={() => props.setDisplay((old) => !old)}
+                className={admin.linkH1}
+              >
                 Welcome-{props.userData.user.fname}
               </h1>
               <img

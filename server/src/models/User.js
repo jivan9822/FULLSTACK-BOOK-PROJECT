@@ -16,12 +16,12 @@ const UserSchema = mongoose.Schema(
     fname: {
       type: String,
       required: [true, 'Please provide your first name!'],
-      match: [/^[a-zA-Z]$/g, 'First name have only alpha beats!'],
+      match: [/^[a-zA-Z]+$/g, 'First name have only alpha beats!'],
     },
     lname: {
       type: String,
       required: [true, 'Please provide your last name!'],
-      match: [/^[a-zA-Z]$/g, 'Last name have only alpha beats!'],
+      match: [/^[a-zA-Z]+$/g, 'Last name have only alpha beats!'],
     },
     //   phone: {string, mandatory, unique},
     phone: {
@@ -47,7 +47,7 @@ const UserSchema = mongoose.Schema(
       required: [true, 'Please provide a password'],
       select: false,
       match: [
-        /^.{8,15}$/,
+        /^.{7,15}$/,
         'password should be min length is 8 and max length is 15',
       ],
     },
@@ -55,7 +55,7 @@ const UserSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please provide a confirmPassword'],
       validate: (el) => {
-        return el === this.password;
+        return el !== this.password;
       },
       message: 'Confirm password dose not match!',
     },

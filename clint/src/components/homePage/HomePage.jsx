@@ -39,7 +39,9 @@ const HomePage = (props) => {
         </div>
       </header>
       <main>
-        {loginStatus && isDisplay && <DisplayBooks books={props.books} />}
+        {loginStatus && isDisplay && (
+          <DisplayBooks books={props.books} setDisplay={setDisplay} />
+        )}
         {/* {!isDisplay && <UpdateHandler setDisplay={setDisplay} />} */}
       </main>
       <Outlet />

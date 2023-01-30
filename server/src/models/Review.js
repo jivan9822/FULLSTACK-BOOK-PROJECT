@@ -41,6 +41,8 @@ const ReviewSchema = mongoose.Schema({
   },
 });
 
+ReviewSchema.index({ user: 1, bookId: 1 }, { unique: true });
+
 ReviewSchema.statics.calAvgRat = async function (bookId) {
   const stats = await this.aggregate([
     {
