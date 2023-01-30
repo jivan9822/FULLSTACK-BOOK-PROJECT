@@ -28,9 +28,7 @@ exports.getAllBook = CatchAsync(async (req, res, next) => {
 
 exports.updateBook = CatchAsync(async (req, res, next) => {
   const book = await Book.findById(req.body.id);
-  // console.log(book);
   if (!book.author.equals(req.user._id)) {
-    console.log('Fail');
     return next(
       new AppError('You are not authorize to perform this operation!', 403)
     );
@@ -53,7 +51,6 @@ exports.updateBook = CatchAsync(async (req, res, next) => {
 exports.deleteBook = CatchAsync(async (req, res, next) => {
   const book = await Book.findById(req.body.id);
   if (!book.author.equals(req.user._id)) {
-    console.log('Fail');
     return next(
       new AppError('You are not authorize to perform this operation!', 403)
     );

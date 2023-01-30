@@ -79,7 +79,7 @@ ReviewSchema.pre(/^findOne/, async function (next) {
 });
 
 ReviewSchema.post(/^findOne/, async function () {
-  await this.r[0].constructor.calcAveRating(this.r[0].bookId);
+  await this.r[0].constructor.calAvgRat(this.r[0].bookId);
 });
 
 const Review = mongoose.model('Review', ReviewSchema);

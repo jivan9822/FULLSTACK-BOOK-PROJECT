@@ -25,7 +25,6 @@ exports.resizeUserPhoto = (req, res, next) => {
   } else {
     url = 'User';
   }
-  console.log(url);
   if (!req.file) {
     req.body.photo = `http://localhost:4000/default.jpg`;
     return next();
