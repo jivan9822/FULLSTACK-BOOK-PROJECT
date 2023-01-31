@@ -4,16 +4,22 @@ import ImageUpload from './../user/registration/ImageUpload';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const validate = (x) => {
+  return (
+    x.title.length > 3 && x.category.length > 3 && x.description.length > 3
+  );
+};
+
 const AddBook = () => {
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
+
   const [bookDetails, setBookDetails] = useState({
     title: '',
     category: '',
     description: '',
     photo: '',
   });
-
   const onInput = (imageData) => {
     setImage(imageData.image);
   };
@@ -25,6 +31,11 @@ const AddBook = () => {
         [name]: value,
       };
     });
+    if (validate(bookDetails)) {
+      document.getElementById('bookSubmit').style.display = '';
+    } else {
+      document.getElementById('bookSubmit').style.display = 'none';
+    }
   };
   const onClickHandler = (e) => {
     e.preventDefault();
@@ -33,16 +44,20 @@ const AddBook = () => {
     formData.append('category', bookDetails.category);
     formData.append('description', bookDetails.description);
     formData.append('photo', image);
-    axios
-      .post('/book', formData)
-      .then((res) => {
-        console.log(res);
-        navigate('/');
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (!image) {
+      alert('Please select image for book!!!');
+    } else {
+      axios
+        .post('/book', formData)
+        .then((res) => {
+          alert('Book added success!');
+          navigate('/');
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
   return (
     <div className={addBook.bookContainer}>
@@ -53,6 +68,7 @@ const AddBook = () => {
           onChange={onChangeHandler}
           name='title'
           type='text'
+          placeholder='Min 5 char'
         />
       </label>
       <label className={addBook.booklabel}>
@@ -60,6 +76,7 @@ const AddBook = () => {
         <input
           className={addBook.bookinput}
           onChange={onChangeHandler}
+          placeholder='Min 5 char'
           name='category'
           type='text'
         />
@@ -69,6 +86,7 @@ const AddBook = () => {
         <textarea
           onChange={onChangeHandler}
           className={addBook.dis}
+          placeholder='Min 5 char'
           type='text'
           name='description'
         />
@@ -79,6 +97,8 @@ const AddBook = () => {
         onClick={onClickHandler}
         type='submit'
         value='Submit'
+        id='bookSubmit'
+        style={{ display: 'none' }}
       >
         Submit
       </button>

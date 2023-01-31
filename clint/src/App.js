@@ -18,12 +18,10 @@ function App() {
     axios
       .get('/user/isValid')
       .then((res) => {
-        console.log(res);
         setLoginStatus(res.data.status);
         setUserData({ user: res.data.data.user });
       })
       .catch((err) => {
-        console.log(err);
         setLoginStatus(false);
       });
   };

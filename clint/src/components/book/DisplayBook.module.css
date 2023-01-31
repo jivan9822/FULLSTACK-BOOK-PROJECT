@@ -1,24 +1,26 @@
 .gridCont {
-  background-color: white;
+  background-color: rgb(112, 0, 107);
   padding: 10px 20px;
-  --auto-grid-min-size: 16rem;
+  --auto-grid-min-size: 12rem;
 
   display: grid;
   grid-template-columns: repeat(
     auto-fill,
     minmax(var(--auto-grid-min-size), 1fr)
   );
-  grid-gap: 1rem;
+  grid-gap: 2rem;
 }
 li {
   /* padding: 0.5rem 1rem; */
   text-align: center;
   padding-bottom: 1rem;
   font-size: 1.2rem;
-  background: #eb4d4b;
+  background: #92400e;
   color: #ffffff;
   list-style: none;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+  box-shadow: 10px 5px 10px 5px black;
+
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -30,15 +32,9 @@ li {
   text-decoration: none;
   background-color: black;
 }
-/* .link {
-  text-align: center;
-  cursor: pointer;
-  text-decoration: none;
-  color: white;
-  background-color: black;
-  padding: 5px;
-  transition: 0.5s;
-} */
+.ratandrev {
+  color: rgb(255, 0, 195);
+}
 
 .title {
   letter-spacing: 2px;
@@ -58,4 +54,11 @@ li {
 .updateBtn:hover,
 .link:hover {
   color: rgb(255, 119, 0);
+}
+.bookImg {
+  transition: 2s;
+  cursor: pointer;
+}
+.bookImg:hover {
+  transform: scale(1.5);
 }

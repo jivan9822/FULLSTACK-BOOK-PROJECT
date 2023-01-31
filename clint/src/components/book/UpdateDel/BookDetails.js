@@ -20,6 +20,7 @@ const BookDisplay = (props) => {
   const onReviewHandler = async (e) => {
     e.preventDefault();
     const data = await axios.post('/review/id', { id: book._id });
+    console.log(data);
     setBookWithReview(data.data.data.book.userReviews);
     setReadReview(true);
   };
@@ -34,7 +35,7 @@ const BookDisplay = (props) => {
       ) : (
         <div className={bookDis.cont}>
           <img src={book.photo} />
-          <div>
+          <div className={bookDis.content}>
             <h2>Title: {book.title}</h2>
             <h2>Author: {book.authorName}</h2>
             <h2>Category: {book.category}</h2>

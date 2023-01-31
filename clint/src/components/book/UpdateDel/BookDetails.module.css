@@ -29,3 +29,9 @@
   font-size: 16px;
   background-color: transparent;
 }
+.content {
+  background-color: #0f172a;
+  color: orange;
+  padding: 20px;
+  font-family: sans-serif;
+}

@@ -67,7 +67,7 @@ const RateBook = (props) => {
   };
 
   return (
-    <div className={addBook.bookContainer} style={{ maxWidth: '50%' }}>
+    <div className={addBook.bookContainer}>
       <h1>Rating</h1>
       <label className={addBook.booklabel}>
         Pleas rate this Book 1 to 5*:

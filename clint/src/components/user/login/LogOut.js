@@ -6,7 +6,6 @@ const LogOut = (props) => {
   axios
     .get('/user/logout')
     .then((res) => {
-      console.log(res);
       props.isValidUser();
       // window.location.reload();
       navigate('/login');

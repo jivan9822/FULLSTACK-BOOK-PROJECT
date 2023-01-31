@@ -1,11 +1,11 @@
 .bookContainer {
+  background-color: #92724f;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  background-color: #92724f;
-  margin: 20px auto;
+  margin: 50px auto;
   align-items: center;
-  max-width: 30%;
-  padding: 20px;
+  max-width: 500px;
   box-sizing: border-box;
   box-shadow: 10px 5px 5px black;
 }

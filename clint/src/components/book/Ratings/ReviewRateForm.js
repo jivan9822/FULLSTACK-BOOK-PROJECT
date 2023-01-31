@@ -34,12 +34,25 @@ const ReviewForm = (props) => {
       };
     });
   };
+  const updateReview = async () => {
+    axios
+      .patch('/review/id', ratingData)
+      .then((res) => {
+        console.log(res);
+        alert('Update Success!');
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('You are not authorize to update this review!');
+      });
+  };
   const onClickHandler = (e) => {
-    console.log(ratingData);
+    updateReview();
   };
   console.log(props.id);
   return (
-    <div className={addRev.bookContainer} style={{ maxWidth: '50%' }}>
+    <div className={addRev.bookContainer}>
       <h1>Rating</h1>
       <label className={addRev.booklabel}>
         Pleas rate this Book 1 to 5*:

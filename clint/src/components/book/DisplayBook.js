@@ -6,7 +6,6 @@ import UpdateHandler from './UpdateDel/Update';
 import BookDisplay from './UpdateDel/BookDetails';
 
 const DisplayBooks = (props) => {
-  console.log(props.books);
   const [isUpdate, setIsUpdate] = useState(false);
   const [isDisplay, setIsDisplay] = useState(false);
   const [hideDisplay, setHideDisplay] = useState(false);
@@ -20,7 +19,6 @@ const DisplayBooks = (props) => {
     e.preventDefault();
   };
   const BookDisplayHandler = (e) => {
-    console.log(e.target.value);
     setIsUpdate(false);
     setHideDisplay(true);
     setIsDisplay(true);
@@ -45,16 +43,16 @@ const DisplayBooks = (props) => {
       {props.books.map((book) => {
         return (
           <li key={book._id}>
-            <img src={book.photo} height='250px' />
+            <img className={display.bookImg} src={book.photo} height='250px' />
             <div>
-              <span className='heading'>User Avg Rating </span>
-              <span className='fa fa-star checked'>{book.avgRating}</span>
+              <span>User Avg Rating: </span>
+              <span className={display.ratandrev}>{book.avgRating}</span>
             </div>
             <div>
-              <span className='heading'>Total Reviews </span>
-              <span className='fa fa-star checked'>{book.reviews}</span>
+              <span>Total Reviews: </span>
+              <span className={display.ratandrev}>{book.reviews}</span>
             </div>
-            <div className={display.linkdiv} to='#'>
+            <div className={display.linkdiv}>
               <button
                 type='submit'
                 name='edit'
