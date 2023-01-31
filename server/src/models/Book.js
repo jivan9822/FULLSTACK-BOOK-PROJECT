@@ -31,6 +31,9 @@ const BookSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
+    bookLink: {
+      type: String,
+    },
     avgRating: {
       type: Number,
       default: 4.5,
