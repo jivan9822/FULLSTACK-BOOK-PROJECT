@@ -6,8 +6,34 @@ import DisplayBooks from '../book/DisplayBook';
 import UpdateHandler from '../book/UpdateDel/Update';
 
 const HomePage = (props) => {
+  const [isFind, setIsFind] = useState(false);
+  const [searchText, setSearchText] = useState({
+    searchText: '',
+  });
+  let book = [...props.books];
+  const [bookData, setBookData] = useState(null);
+  const [option, setOption] = useState();
   const loginStatus = props.loginStatus;
   const [isDisplay, setDisplay] = useState(true);
+  const findHandler = (e) => {
+    e.preventDefault();
+    setIsFind((old) => !old);
+  };
+  const searchTextHandler = (e) => {
+    const { name, value } = e.target;
+    const reg = new RegExp(`${value}`, 'i');
+    setBookData([
+      ...book.filter((each) => {
+        if (each[`${option}`].match(reg)) {
+          return each;
+        }
+      }),
+    ]);
+    setSearchText({ [name]: value });
+  };
+  const onOptionHandler = (e) => {
+    setOption(e.target.value);
+  };
   return (
     <Fragment>
       <header className={home.header}>
@@ -17,9 +43,33 @@ const HomePage = (props) => {
               props.isValidUser();
               setDisplay(true);
             }}
+            className={home.headBookMam}
           >
             Book Management
           </h1>
+          <div>
+            <h4 onClick={findHandler} className={home.findBtn}>
+              FindBook
+            </h4>
+            <div
+              className={home.findDiv}
+              style={{ display: isFind ? '' : 'none' }}
+            >
+              <select onChange={onOptionHandler} className={home.selectBtn}>
+                <option>Select</option>
+                <option value='authorName'>By Author</option>
+                <option value='title'>By BookName</option>
+              </select>
+              <input
+                className={home.searchInput}
+                placeholder='type here'
+                type='text'
+                name='searchText'
+                value={searchText.searchText}
+                onChange={searchTextHandler}
+              />
+            </div>
+          </div>
         </Link>
         <div className={home.navItems}>
           <div>
@@ -40,7 +90,10 @@ const HomePage = (props) => {
       </header>
       <main>
         {loginStatus && isDisplay && (
-          <DisplayBooks books={props.books} setDisplay={setDisplay} />
+          <DisplayBooks
+            books={bookData ? bookData : book}
+            setDisplay={setDisplay}
+          />
         )}
         {/* {!isDisplay && <UpdateHandler setDisplay={setDisplay} />} */}
       </main>

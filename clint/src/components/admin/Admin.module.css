@@ -8,7 +8,7 @@ body {
 .header {
   background-color: #881337;
   margin: 0 auto;
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   display: flex;
   justify-content: space-between;
 }
@@ -16,6 +16,7 @@ body {
   text-decoration: none;
   color: black;
   font-size: 16px;
+  font-family: 'Sono' sans-serif;
 }
 
 .navItems {
