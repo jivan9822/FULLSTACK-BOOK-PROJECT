@@ -18,6 +18,10 @@ const HomePage = (props) => {
   const findHandler = (e) => {
     e.preventDefault();
     setIsFind((old) => !old);
+    setSearchText({
+      searchText: '',
+    });
+    setBookData([...book]);
   };
   const searchTextHandler = (e) => {
     const { name, value } = e.target;
@@ -42,6 +46,10 @@ const HomePage = (props) => {
             onClick={() => {
               props.isValidUser();
               setDisplay(true);
+              setSearchText({
+                searchText: '',
+              });
+              setBookData([...book]);
             }}
             className={home.headBookMam}
           >

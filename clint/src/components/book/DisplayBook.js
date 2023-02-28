@@ -8,8 +8,6 @@ import BookDisplay from './UpdateDel/BookDetails';
 const DisplayBooks = (props) => {
   const roll = props.userData.user.roll;
   const user = props.userData.user;
-  console.log(user._id);
-  console.log(props.books[0].author);
   const [isUpdate, setIsUpdate] = useState(false);
   const [isDisplay, setIsDisplay] = useState(false);
   const [hideDisplay, setHideDisplay] = useState(false);
