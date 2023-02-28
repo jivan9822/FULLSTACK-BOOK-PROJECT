@@ -91,6 +91,7 @@ const HomePage = (props) => {
       <main>
         {loginStatus && isDisplay && (
           <DisplayBooks
+            userData={props.userData}
             books={bookData ? bookData : book}
             setDisplay={setDisplay}
           />

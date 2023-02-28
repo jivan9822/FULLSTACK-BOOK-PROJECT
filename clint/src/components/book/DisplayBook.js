@@ -6,6 +6,10 @@ import UpdateHandler from './UpdateDel/Update';
 import BookDisplay from './UpdateDel/BookDetails';
 
 const DisplayBooks = (props) => {
+  const roll = props.userData.user.roll;
+  const user = props.userData.user;
+  console.log(user._id);
+  console.log(props.books[0].author);
   const [isUpdate, setIsUpdate] = useState(false);
   const [isDisplay, setIsDisplay] = useState(false);
   const [hideDisplay, setHideDisplay] = useState(false);
@@ -53,15 +57,17 @@ const DisplayBooks = (props) => {
               <span className={display.ratandrev}>{book.reviews}</span>
             </div>
             <div className={display.linkdiv}>
-              <button
-                type='submit'
-                name='edit'
-                value={book._id}
-                className={display.updateBtn}
-                onClick={onClickUpdateHandler}
-              >
-                edit
-              </button>
+              {roll !== 'user' && user._id === book.author && (
+                <button
+                  type='submit'
+                  name='edit'
+                  value={book._id}
+                  className={display.updateBtn}
+                  onClick={onClickUpdateHandler}
+                >
+                  edit
+                </button>
+              )}
               <button
                 className={display.link}
                 name='details'
@@ -71,15 +77,17 @@ const DisplayBooks = (props) => {
                 {' '}
                 MoreDetails
               </button>
-              <button
-                type='submit'
-                name='delete'
-                value={book._id}
-                className={display.delBtn}
-                onClick={onClickDelHandler}
-              >
-                delete
-              </button>
+              {roll !== 'user' && user._id === book.author && (
+                <button
+                  type='submit'
+                  name='delete'
+                  value={book._id}
+                  className={display.delBtn}
+                  onClick={onClickDelHandler}
+                >
+                  delete
+                </button>
+              )}
             </div>
           </li>
         );
